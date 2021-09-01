@@ -18,9 +18,10 @@ bacteria in a mock community, based on sequencing 16S rDNA amplicons. This is de
 We used a relatively crude and straightforward approach of BLASTN searches of sequence reads against the RefSeq RNA database and classifying the read as belonging to the biological species of the best BLASTN hit, if that best hit shares at least 97% sequence identity along at least 95% of the query sequence length. Prior to BLASTN searching, read pairs were assembled into single consensus reads using FLASH v. 1.2.10. Read pairs that FLASH failed to merge were discarded.
  
 The RefSeq RNA database was downloaded from ftp://ftp.ncbi.nlm.nih.gov/refseq/release/complete/  on 26th May 2017 and contains 18,901,573 sequences.
-Command lines
+
+Command lines:
  
-## Step 1: Assembling read pairs using FLASH and convert fastq to fasta
+## Step 1: Assembling read pairs using [FLASH](https://doi.org/10.1093/bioinformatics/btr507) and convert fastq to fasta
 ```
 for i in MCM2a1_S1_L001 MCM2a2_S2_L001 MCM2a3_S3_L001 MCM2b1_S4_L001 MCM2b2_S5_L001 MCM2b3_S6_L001; do ~/FLASH-1.2.10/flash --output-prefix=$i.12   $i"_R1.12.fastq" $i"_R2.12.fastq"; done
  
@@ -28,6 +29,8 @@ for i in MCM2a1_S1_L001 MCM2a2_S2_L001 MCM2a3_S3_L001 MCM2b1_S4_L001 MCM2b2_S5_L
  
 for i in *.extendedFrags.fastq ; do echo $i; ./fastq2fasta.pl $i > $i.fasta; done
 ```
+Magoč, T., & Salzberg, S. L. (2011). FLASH: fast length adjustment of short reads to improve genome assemblies. *Bioinformatics* **27**: 2957–2963. https://doi.org/10.1093/bioinformatics/btr507
+
 
 ## Step 2: Performing BLASTN searches:
 ```
