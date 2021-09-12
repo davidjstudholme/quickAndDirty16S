@@ -21,8 +21,8 @@ while (my $seq_obj = $inseq->next_seq ) {
     my $seq = $seq_obj->seq ;
     my $desc = $seq_obj->description ;
     
-    my $rev_16S = "GGACTAC..GGGT.TCTAAT";
-    my $fwd_16S = "GTG.CAGC.GCCGCGGTAA";
+    my $rev_16s = "GGACTAC..GGGT.TCTAAT";
+    my $fwd_16s = "GTG.CAGC.GCCGCGGTAA";
   
     my $rev_its = "GCTGCGTTCTTCATCGATGC";
     my $fwd_its = "CTTGGTCATTTAGAGGAAGTAA";
@@ -30,11 +30,16 @@ while (my $seq_obj = $inseq->next_seq ) {
     my $is_its = 0;
     my $is_16s = 0;
   
+    my $rev_its_rc = reverse($rev_its);
+    $rev_its_rc =~ tr/ACGTacgt/TGCAtgca/;
   
-    if ($seq =~ m/$fwd_16S.*$rev_16S/i ) {
+    my $rev_16s_rc = reverse($rev_16s);
+    $rev_16s_rc =~ tr/ACGTacgt/TGCAtgca/;
+  
+    if ($seq =~ m/$fwd_16s.*$rev_16s_rc/i ) {
         $is_16s = 1;
     }
-    if ($seq =~ m/$fwd_its.*$rev_its/i ) {
+    if ($seq =~ m/$fwd_its.*$rev_its_rc/i ) {
         $is_its = 1;
     }
 
