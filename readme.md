@@ -76,7 +76,7 @@ To assemble the read pairs by concatenation, use the concatenate-fastq-pairs.pl 
 ```
 perl concatenate-fastq-pairs.pl fwd_reads_file.fq rev_reads_file.fq > concated_reads_file.fq
 ```
-You may then wish to conver the resulting FASTQ file into FASTA, as a suitable input for BLAST, KRAKEN, etc:
+You may then wish to convert the resulting FASTQ file into FASTA, as a suitable input for BLAST, KRAKEN, etc:
 ```
 perl fastq2fasta.pl concated_reads_file.fq > concated_reads_file.fasta
 ```
