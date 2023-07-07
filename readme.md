@@ -68,9 +68,15 @@ perl ./get_abundances_from_blastn.pl MCM2b3_S6_L001.456.extendedFrags.fastq.fast
 ``` 
 ./combine_abundances_into_single_matrix.pl *fasta.abundances.csv > abundances_matrix.csv
 ```
- 
- 
- 
- 
 
+# What if my paired reads don't overlap?
+If the length of the amplicon is greater than the sum of the lengths of the pair of reads, then those two reads will not overlap. That is, there is a gap on unknown sequence separating the pair of reads. Therefore, FLASH will fail to assemble the pair into a single 'read'. In this situation, a possible solution is to concatenate the pair of reads together, with a series of Ns inserted between the two reads to represent the gap of unknown sequence.
 
+To assemble the read pairs by concatenation, use the concatenate-fastq-pairs.pl script:
+```
+perl fwd_reads_file.fq rev_reads_file.fq > concated_reads_file.fq
+```
+You may then wish to conver the resulting FASTQ file into FASTA, as a suitable input for BLAST, KRAKEN, etc:
+```
+perl fastq2fasta.pl concated_reads_file.fq > concated_reads_file.fasta
+```
