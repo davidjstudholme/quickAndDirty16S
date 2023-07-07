@@ -74,7 +74,7 @@ If the length of the amplicon is greater than the sum of the lengths of the pair
 
 To assemble the read pairs by concatenation, use the concatenate-fastq-pairs.pl script:
 ```
-perl fwd_reads_file.fq rev_reads_file.fq > concated_reads_file.fq
+perl concatenate-fastq-pairs.pl fwd_reads_file.fq rev_reads_file.fq > concated_reads_file.fq
 ```
 You may then wish to conver the resulting FASTQ file into FASTA, as a suitable input for BLAST, KRAKEN, etc:
 ```
