@@ -91,8 +91,10 @@ while (defined (my $id_line = <FILE1>) and
     
     if ( $seq1 =~ m/^[acgt]+/i and
 	 $seq2 =~ m/^[acgt]+/i ) {
+  	 my $seq2_rc = reverse($seq2);
+    	 $seq2_rc =~ tr/ACGTacgt/TGCAtgca/;
 	print ">$id1 $id2\n";
-	print "$seq1".'NNNNNNNNNN'."$seq2\n";
+	print "$seq1".'NNNNNNNNNN'."$seq2_rc\n";
 	$count++;
     } else {
 	
